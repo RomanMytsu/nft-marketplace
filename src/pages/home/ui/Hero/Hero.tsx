@@ -1,6 +1,8 @@
 import { Button } from "@/shared/ui/Button/Button";
 import { Icon } from "@/shared/ui/Icon/Icon";
 import spaceWalkingImage from "@/shared/assets/img/hero/space-walking.webp";
+import spaceWalkingTabletImage from "@/shared/assets/img/hero/space-walking-tablet.webp";
+import spaceWalkingMobileImage from "@/shared/assets/img/hero/space-walking-mobile.webp";
 import animakidAvatar from "@/shared/assets/img/hero/animakid-avatar.webp";
 import clsx from "clsx";
 import s from "./Hero.module.scss";
@@ -38,13 +40,25 @@ export function Hero() {
           </li>
         </ul>
         <article className={s.hero__nftCard}>
-          <img
-            src={spaceWalkingImage}
-            alt="An astronaut exploring a surreal cosmic landscape"
-            className={s.hero__nftImg}
-            width={510}
-            height={401}
-          />
+          <picture>
+            <source
+              media="(max-width: 480px)"
+              srcSet={spaceWalkingMobileImage}
+              type="image/webp"
+            />
+            <source
+              media="(max-width: 834px)"
+              srcSet={spaceWalkingTabletImage}
+              type="image/webp"
+            />
+            <img
+              src={spaceWalkingImage}
+              alt="An astronaut exploring a surreal cosmic landscape"
+              className={s.hero__nftImg}
+              width={510}
+              height={401}
+            />
+          </picture>
           <div className={s.hero__nftInfo}>
             <h2 className={s.hero__nftTitle}>Space Walking</h2>
             <div className={s.hero__creator}>

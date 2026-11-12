@@ -5,10 +5,26 @@ import { useCallback, useEffect, useState } from "react";
 import { MobileMenu } from "./ui/MobileMenu/MobileMenu";
 import { NAVIGATION_LINKS } from "./model/navigationLinks";
 import { Button } from "@/shared/ui/Button/Button";
+import clsx from "clsx";
 import s from "./Header.module.scss";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 55);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const desktopMediaQuery = window.matchMedia("(min-width: 835px)");
@@ -29,7 +45,7 @@ const Header = () => {
   }, []);
   return (
     <>
-      <header className={s.header}>
+      <header className={clsx(s.header, isScrolled && s.header__scrolled)}>
         <div className={s.header__container}>
           <div className={s.header__navMenu}>
             <Link to="/" className={s.header__logoLink}>

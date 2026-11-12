@@ -62,6 +62,7 @@
       font-size: 16px;
       line-height: 1.4;
       margin-bottom: 20px;
+      text-transform: none;
     }
 
     @include max-width("mobile") {
